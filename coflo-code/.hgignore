@@ -1,0 +1,9 @@
+syntax: glob
+aclocal.m4
+autom4te.cache
+build
+doc/index.html
+src/**/Makefile.in
+Makefile.in
+tests/testsuite
+configure

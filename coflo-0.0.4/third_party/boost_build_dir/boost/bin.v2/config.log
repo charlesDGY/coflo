@@ -1,0 +1,23 @@
+...found 17 targets...
+...updating 10 targets...
+common.mkdir ../boost_build_dir
+common.mkdir ../boost_build_dir/boost
+common.mkdir ../boost_build_dir/boost/bin.v2
+common.mkdir ../boost_build_dir/boost/bin.v2/libs
+common.mkdir ../boost_build_dir/boost/bin.v2/libs/regex
+common.mkdir ../boost_build_dir/boost/bin.v2/libs/regex/build
+common.mkdir ../boost_build_dir/boost/bin.v2/libs/regex/build/gcc-4.8
+common.mkdir ../boost_build_dir/boost/bin.v2/libs/regex/build/gcc-4.8/debug
+gcc.compile.c++ ../boost_build_dir/boost/bin.v2/libs/regex/build/gcc-4.8/debug/has_icu_test.o
+libs/regex/build/has_icu_test.cpp:12:30: fatal error: unicode/uversion.h: No such file or directory
+ #include <unicode/uversion.h>
+                              ^
+compilation terminated.
+
+    "g++"  -ftemplate-depth-128 -O0 -fno-inline -Wall -pedantic -g -fPIC  -DBOOST_ALL_NO_LIB=1 -DBOOST_HAS_ICU=1  -I"." -c -o "../boost_build_dir/boost/bin.v2/libs/regex/build/gcc-4.8/debug/has_icu_test.o" "libs/regex/build/has_icu_test.cpp"
+
+...failed gcc.compile.c++ ../boost_build_dir/boost/bin.v2/libs/regex/build/gcc-4.8/debug/has_icu_test.o...
+...skipped <p../boost_build_dir/boost/bin.v2/libs/regex/build/gcc-4.8/debug>has_icu for lack of <p../boost_build_dir/boost/bin.v2/libs/regex/build/gcc-4.8/debug>has_icu_test.o...
+...failed updating 1 target...
+...skipped 1 target...
+...updated 8 targets...

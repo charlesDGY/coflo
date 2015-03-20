@@ -1,0 +1,225 @@
+function_that_we_will_call_through_a_ptr ()
+[/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 37:1] {
+  double D.2804;
+  int some_variable_set_by_an_isr.0;
+  int g_external_variable.1;
+  int D.2807;
+
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 38:41] some_variable_set_by_an_isr.0 = some_variable_set_by_an_isr;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 38:41] g_external_variable.1 = g_external_variable;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 38:41] D.2807 = some_variable_set_by_an_isr.0 + g_external_variable.1;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 38:5] D.2804 = (double) D.2807;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 38:5] return D.2804;
+}
+
+
+another_level_deep ()
+[/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 49:26] {
+  int D.2809;
+
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 49:28] D.2809 = 1;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 49:28] return D.2809;
+}
+
+
+function_a ()
+[/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 50:18] {
+  int D.2811;
+
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 50:38] another_level_deep ();
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 50:42] D.2811 = 1;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 50:42] return D.2811;
+}
+
+
+function_b ()
+[/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 51:18] {
+  int D.2813;
+
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 51:19] D.2813 = 2;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 51:19] return D.2813;
+}
+
+
+function_c ()
+[/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 52:18] {
+  int D.2815;
+
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 52:19] D.2815 = 3;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 52:19] return D.2815;
+}
+
+
+function_w ()
+[/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 53:25] {
+  int D.2817;
+
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 53:26] D.2817 = 4;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 53:26] return D.2817;
+}
+
+
+function_y ()
+[/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 54:18] {
+  int D.2819;
+
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 54:19] D.2819 = 5;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 54:19] return D.2819;
+}
+
+
+function_z ()
+[/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 55:18] {
+  int D.2821;
+
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 55:19] D.2821 = some_global_variable;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 55:19] return D.2821;
+}
+
+
+threadsafe_printf_wrapper (int which_thread)
+[/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 61:1] {
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 62:23] pthread_mutex_lock ([/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 62] &f_mutex_protecting_thread_unsafe_function);
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 63:11] printf ([/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 63] "Now printing from thread %d\n", which_thread);
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 64:25] pthread_mutex_unlock ([/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 64] &f_mutex_protecting_thread_unsafe_function);
+}
+
+
+test_func ()
+[/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 70:1] {
+  int D.2823;
+
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 71:2] D.2823 = 1;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 71:2] return D.2823;
+}
+
+
+predicate_1 ()
+[/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 75:1] {
+  int D.2825;
+
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 76:2] D.2825 = some_variable_set_by_an_isr;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 76:2] return D.2825;
+}
+
+
+ISR1 ()
+[/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 80:1] {
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 83:30] threadsafe_printf_wrapper (9);
+}
+
+
+one_if (int val)
+[/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 87:1] {
+  int D.2832;
+  int x;
+
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 88:6] x = val;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 90:4] if (x > val) goto <D.2827>; else goto <D.2828>;
+  <D.2827>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 92:9] printf ([/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 92] "Yes\n");
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 94:5] if (x > 6) goto <D.2829>; else goto <D.2830>;
+  <D.2829>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 96:10] printf ([/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 96] "t");
+  <D.2830>:
+  goto <D.2831>;
+  <D.2828>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 101:9] printf ([/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 101] "No\n");
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 102:3] D.2832 = 4;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 102:3] return D.2832;
+  <D.2831>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 105:8] printf ([/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 105] "h");
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 106:6] exit (2);
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 108:2] D.2832 = x;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 108:2] return D.2832;
+}
+
+
+main ()
+[/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 112:1] {
+  int D.2834;
+  int D.2835;
+  int D.2836;
+  int D.2837;
+  int D.2838;
+  int D.2839;
+  int D.2843;
+  int g_external_variable.2;
+  int g_external_variable.3;
+  double D.2851;
+  int g_external_variable.4;
+  int D.2855;
+  int D.2858;
+  int retval;
+  double a_double_val;
+  double (*T_FUNCTION_PTR) (void) a_function_ptr;
+  void Label1 = <<< error >>>;
+
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 115:17] a_function_ptr = [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 115] function_that_we_will_call_through_a_ptr;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 117:14] D.2834 = test_func ();
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 117:27] D.2835 = function_a ();
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 117:16] D.2836 = D.2834 + D.2835;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 117:39] D.2837 = function_w ();
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 117:39] D.2838 = calculate (D.2837);
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 117:29] D.2839 = D.2836 + D.2838;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 117:4] if (D.2839 != 0) goto <D.2840>; else goto <D.2841>;
+  <D.2840>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 119:10] retval = function_a ();
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 120:10] retval = function_b ();
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 121:10] retval = function_c ();
+  goto <D.2842>;
+  <D.2841>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 125:8] goto <D.2795>;
+  <D.2794>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 127:11] retval = function_w ();
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 128:11] retval = function_y ();
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 129:11] retval = function_z ();
+  <D.2795>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 125:20] D.2843 = predicate_1 ();
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 125:8] if (D.2843 != 0) goto <D.2794>; else goto <D.2796>;
+  <D.2796>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 132:6] g_external_variable.2 = g_external_variable;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 132:5] if (g_external_variable.2 != 0) goto <D.2845>; else goto <D.2846>;
+  <D.2845>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 134:11] do_this ();
+  goto <D.2847>;
+  <D.2846>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 138:11] do_that ();
+  <D.2847>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 141:6] g_external_variable.3 = g_external_variable;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 141:5] if (g_external_variable.3 != 0) goto <D.2849>; else goto <D.2850>;
+  <D.2849>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 144:10] printf ([/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 144] "if with no else\n");
+  <D.2850>:
+  <D.2842>:
+  Label1:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 150:2] switch (1) <[/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 167] default: <D.2802>, [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 152] case 1: <D.2798>, [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 157] case 2: <D.2800>, [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 162] case 3: <D.2801>>
+  <D.2798>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 154:14] function_a ();
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 155:4] goto <D.2799>;
+  <D.2800>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 159:14] function_b ();
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 160:8] exit (0);
+  <D.2801>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 164:14] function_c ();
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 165:4] goto <D.2799>;
+  <D.2802>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 170:10] D.2851 = a_function_ptr ();
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 170:10] printf ([/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 170] "Double value: %f", D.2851);
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 171:4] goto <D.2799>;
+  <D.2799>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 175:5] g_external_variable.4 = g_external_variable;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 175:4] if (g_external_variable.4 != 0) goto <D.2853>; else goto <D.2854>;
+  <D.2853>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 175:39] D.2855 = predicate_1 ();
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 175:25] if (D.2855 != 0) goto <D.2856>; else goto <D.2857>;
+  <D.2856>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 177:9] printf ([/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 177] "OR Test\n");
+  <D.2857>:
+  <D.2854>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 180:30] last_function_called_by_main (88);
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 182:2] D.2858 = retval;
+  [/home/dgy/coflo/coflo-0.0.4/tests/test_source_file_1.c : 182:2] return D.2858;
+}
+
+

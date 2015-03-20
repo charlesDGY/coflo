@@ -1,0 +1,23 @@
+main ()
+[/home/dgy/coflo/coflo-0.0.4/tests/compound_condition_2.c : 24:1] {
+  int x.0;
+  int y.1;
+  int D.1288;
+
+  [/home/dgy/coflo/coflo-0.0.4/tests/compound_condition_2.c : 25:8] x.0 = x;
+  [/home/dgy/coflo/coflo-0.0.4/tests/compound_condition_2.c : 25:4] if (x.0 == 1) goto <D.1283>; else goto <D.1286>;
+  <D.1286>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/compound_condition_2.c : 25:20] y.1 = y;
+  [/home/dgy/coflo/coflo-0.0.4/tests/compound_condition_2.c : 25:14] if (y.1 == 1) goto <D.1283>; else goto <D.1284>;
+  <D.1283>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/compound_condition_2.c : 26:2] {
+    extern int printf ();
+
+    [/home/dgy/coflo/coflo-0.0.4/tests/compound_condition_2.c : 27:9] printf ([/home/dgy/coflo/coflo-0.0.4/tests/compound_condition_2.c : 27] "Inside the condition");
+  }
+  <D.1284>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/compound_condition_2.c : 30:2] D.1288 = 0;
+  [/home/dgy/coflo/coflo-0.0.4/tests/compound_condition_2.c : 30:2] return D.1288;
+}
+
+

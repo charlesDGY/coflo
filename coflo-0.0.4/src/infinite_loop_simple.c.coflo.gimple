@@ -1,0 +1,12 @@
+main ()
+[/home/dgy/coflo/coflo-0.0.4/tests/infinite_loop_simple.c : 23:1] {
+  int D.1281;
+
+  <D.1279>:
+  [/home/dgy/coflo/coflo-0.0.4/tests/infinite_loop_simple.c : 27:9] printf ([/home/dgy/coflo/coflo-0.0.4/tests/infinite_loop_simple.c : 27] "Looping forever.\n");
+  [/home/dgy/coflo/coflo-0.0.4/tests/infinite_loop_simple.c : 28:2] goto <D.1279>;
+  [/home/dgy/coflo/coflo-0.0.4/tests/infinite_loop_simple.c : 30:2] D.1281 = 1;
+  [/home/dgy/coflo/coflo-0.0.4/tests/infinite_loop_simple.c : 30:2] return D.1281;
+}
+
+

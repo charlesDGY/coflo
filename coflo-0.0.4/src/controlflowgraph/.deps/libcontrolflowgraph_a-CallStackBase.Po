@@ -1,0 +1,6 @@
+libcontrolflowgraph_a-CallStackBase.o: CallStackBase.cpp \
+ /usr/include/stdc-predef.h CallStackBase.h
+
+/usr/include/stdc-predef.h:
+
+CallStackBase.h:

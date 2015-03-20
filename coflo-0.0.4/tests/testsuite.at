@@ -1,0 +1,159 @@
+# testsuite.at for CoFlo
+#
+# Copyright 2011, 2012 Gary R. Van Sickle (grvs@users.sourceforge.net).
+#
+# This file is part of CoFlo.
+#
+# CoFlo is free software: you can redistribute it and/or modify it under the
+# terms of version 3 of the GNU General Public License as published by the Free
+# Software Foundation.
+#
+# CoFlo is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License along with
+# CoFlo.  If not, see <http://www.gnu.org/licenses/>.
+
+# A basic test suite for CoFlo.
+
+###
+### "Helper" m4 defines.
+###
+
+# A somewhat more explicit way of skipping tests.
+m4_define([AT_SKIP_TEST],[exit 77])
+
+# A macro which expands to 16 test instances, with USE_GCC_AT_PATH defined to one
+# of the gcc's found at "make check" time.
+# Use like AT_CHECK, except don't wrap in AT_SETUP/AT_CLEANUP.
+m4_define([AT_COFLO_CHECK],[
+	m4_for([GCC_INDEX], 0, 15, 1, [
+		# Start a test group for testing CoFlo with ${GCC_PATH_ARRAY[GCC_INDEX]}.
+		AT_SETUP([Using GCC @S|@{GCC_PATH_ARRAY@<:@GCC_INDEX@:>@}...])
+		# Skip the test if we don't have a compiler in this slot of the array.
+		# Autotest needs to know the number of tests at autoconf time, so we have to do
+		# this a bit suboptimally like this - preferably we wouldn't generate the test at all.
+		AT_SKIP_IF([test -z ${GCC_VERSION_STRING_ARRAY@<:@GCC_INDEX@:>@}])
+		# Expect to fail if the GCC is a 3.x version, or the GCC we thought we found above
+		# no longer appears to exist and/or isn't executable by the current user on this system.
+		AT_XFAIL_IF([AS_VERSION_COMPARE([${GCC_VERSION_STRING_ARRAY@<:@GCC_INDEX@:>@}],[${MIN_GCC_VERSION}],[XF=1],[XF=0],[XF=0]) ; test $XF -eq 1])
+		AT_XFAIL_IF([test -x ${GCC_VERSION_STRING_ARRAY@<:@GCC_INDEX@:>@}])
+		# Capture the contents of the intermediate files if the test fails.
+		dnl AT_CAPTURE_FILE([test_source_file_1.c.coflo.gimple])
+		dnl AT_CAPTURE_FILE([test_source_file_2.c.coflo.gimple])
+		AT_CHECK([
+		USE_GCC_AT_PATH=$[]{GCC_PATH_ARRAY@<:@GCC_INDEX@:>@}
+		$1],$2,$3,$4,$5,$6)
+		# End this test group.
+		AT_CLEANUP])
+])
+
+dnl @S|@ = "$"
+dnl @<:@ = "["
+
+###
+### Start of the test suite proper.
+###
+AT_INIT([CoFlo Test Suite])
+AT_COPYRIGHT([Copyright (C) 2011 Gary R. Van Sickle])
+AT_COLOR_TESTS
+
+# We only have one executable to test.
+AT_TESTED([coflo])
+
+###
+### Start the "Sanity check" test category.
+###
+AT_BANNER([CoFlo sanity checks])
+
+m4_include([version.at])
+
+# Start a test group.
+AT_SETUP([Using default GCC against C code])
+
+# Capture the contents of the intermediate files if the test fails.
+AT_CAPTURE_FILE([test_source_file_1.c.coflo.gimple])
+AT_CAPTURE_FILE([test_source_file_2.c.coflo.gimple])
+
+AT_CHECK([coflo ${abs_top_srcdir}/tests/test_source_file_1.c ${abs_top_srcdir}/tests/test_source_file_2.c --cfg=main],
+	0,
+	ignore,
+	ignore)
+
+# End this test group.
+AT_CLEANUP
+
+###
+### Test against C code using all compilers found at "make check" time.
+###
+AT_BANNER([Compiler Compatibility Tests - C code])
+
+AT_COFLO_CHECK([coflo --use-gcc=${USE_GCC_AT_PATH} ${abs_top_srcdir}/tests/test_source_file_1.c ${abs_top_srcdir}/tests/test_source_file_2.c --cfg=main],
+	0,
+	ignore,
+	ignore)
+
+###
+### Test against C++ code using all compilers found at "make check" time.
+###
+AT_BANNER([Compiler Compatibility Tests - C++ code])
+
+AT_SETUP([Using default GCC against C-style C++ code])
+
+# Capture the contents of the intermediate files if the test fails.
+AT_CAPTURE_FILE([test_source_file_1.cpp.coflo.gimple])
+AT_CAPTURE_FILE([test_source_file_2.cpp.coflo.gimple])
+
+AT_CHECK([coflo ${abs_top_builddir}/tests/test_source_file_1.cpp ${abs_top_builddir}/tests/test_source_file_2.cpp --cfg=main],
+	0,
+	ignore,
+	ignore)
+
+# End this test group.
+AT_CLEANUP
+
+## @TODO Commenting this out for the moment because it fails for unknown reasons.  Three of the compilers found on my system are
+## reporting "error trying to exec 'cc1plus': execvp: No such file or directory", though if I run the test manually they work fine.
+#AT_COFLO_CHECK([coflo --use-gcc=${USE_GCC_AT_PATH} ${abs_top_builddir}/tests/test_source_file_1.cpp ${abs_top_builddir}/tests/test_source_file_2.cpp --cfg=main],
+	0,
+	ignore,
+	ignore)
+	
+###
+### See if we can generate the control flow graph of CoFlo itself.
+###
+AT_BANNER([CoFlo self-checks])
+
+# Start a test group.
+AT_SETUP([Trying to generate CFG of main.cpp::main()])
+
+# We don't expect to be able to do this yet.
+AT_XFAIL_IF([true])
+
+# Capture the contents of the intermediate files if the test fails.
+AT_CAPTURE_FILE([main.cpp.coflo.gimple])
+
+AT_CHECK([coflo -I ${abs_top_builddir}/src -I ${abs_top_srcdir}/src/debug_utils ${abs_top_srcdir}/src/main.cpp --cfg=main],
+	0,
+	ignore,
+	ignore)
+
+# End this test group.
+AT_CLEANUP
+
+###
+### Do some checks to make sure CoFlo is generating valid CFGs.
+###
+m4_include([connectedness.at])
+
+###
+### Do some checks of the CFG structuring functionality.
+###
+m4_include([structuring_compound_conditions.at])
+
+
+###
+### Do some checks of the analysis functionality.
+###
+m4_include([constraints.at])
